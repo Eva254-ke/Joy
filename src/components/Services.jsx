@@ -55,7 +55,7 @@ const HomeServicesPreview = () => {
         {/* Services Grid */}
         <div className="services-grid">
           {featuredServices.map((service) => (
-            <ServiceCard
+            <ServiceCard 
               key={service.id}
               service={service}
               onClick={() => navigate(`/services/${service.id}`)}
