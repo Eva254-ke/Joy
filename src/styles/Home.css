@@ -196,11 +196,48 @@
 
 @media (max-width: 480px) {
   .hero {
-    margin-bottom: 30px;
+    height: 60vh;
+    min-height: 220px;
+    margin-bottom: 20px;
+    padding: 0 0 10px 0;
   }
-  
+  .hero-content {
+    max-width: 98vw;
+    padding: 0 6px;
+    gap: 1.2rem;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-tagline {
+    font-size: 1.1rem;
+  }
+  .hero-description {
+    font-size: 0.95rem;
+    max-width: 95vw;
+  }
+  .hero-buttons {
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    margin-top: 0.5rem;
+    justify-content: center;
+  }
+  .hero-btn,
+  .hero-secondary-btn {
+    width: auto;
+    min-width: 120px;
+    max-width: 48vw;
+    padding: 10px 0;
+    font-size: 0.95rem;
+  }
   .scroll-indicator {
     display: none;
+  }
+  .hero-video {
+    min-height: 100%;
+    max-height: 60vh;
+    object-fit: cover;
   }
 }
 /* Services Section */
