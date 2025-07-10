@@ -17,7 +17,7 @@ export default function Hero() {
       clearTimeout(fadeOutTimeout);
       clearTimeout(changeWordTimeout);
     };
-  }, [currentWordIdx]);
+  }, [currentWordIdx, words.length]);
 
   return (
     <section className="hero" role="banner" aria-label="Welcome section">
