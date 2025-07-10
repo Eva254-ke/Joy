@@ -250,6 +250,16 @@
   box-shadow: 0 7px 14px rgba(219, 39, 119, 0.3);
 }
 
+/* Hide Book Now button on mobile */
+.hide-on-mobile {
+  display: flex;
+}
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .navbar-center {

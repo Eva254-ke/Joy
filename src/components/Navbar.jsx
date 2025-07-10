@@ -52,8 +52,8 @@ function Navbar() {
           </ul>
         </div>
 
-        {/* Right: Book Now Button */}
-        <div className="navbar-right">
+        {/* Right: Book Now Button (Desktop only) */}
+        <div className="navbar-right hide-on-mobile">
           <a
             href="/bookings"
             className="navbar-book-btn"
