@@ -1,0 +1,72 @@
+/*
+  App.css - Global Styles and Layout for JoyBeauty
+  This file handles the main structure (Navbar, Main Content, Footer)
+  and ensures a sticky footer behavior.
+*/
+
+/* Reset default browser margins and paddings for consistency */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensures the body and root element take full viewport height */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+/* Base font for the entire application */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333; /* Dark gray for general text for readability */
+  background-color: #f8f9fa; /* Light background for the whole app */
+}
+
+/* Main App container styling */
+.App {
+  display: flex;
+  flex-direction: column; /* Stacks children (Navbar, Main, Footer) vertically */
+  min-height: 100vh; /* Ensures the app container is at least viewport height */
+  box-sizing: border-box;
+}
+
+/* Main content area */
+.main-content {
+  flex-grow: 1; /* Allows the main content to grow and push the footer down */
+  padding-top: 80px; /* IMPORTANT: This padding should match your Navbar's height to prevent content from going under it */
+  padding-bottom: 20px; /* Optional: Space above the footer */
+  padding-left: 20px; /* Horizontal padding for content */
+  padding-right: 20px; /* Horizontal padding for content */
+  max-width: 1200px; /* Constrain main content width */
+  margin: 0 auto; /* Center the main content horizontally */
+  box-sizing: border-box;
+}
+
+/* General Link Styling (if not already handled by specific components) */
+a {
+  text-decoration: none;
+  color: #DB2777; /* Brand pink for links */
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #BE185D; /* Darker pink on hover */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 60px; /* Adjust padding-top for potentially smaller mobile navbar */
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+/* You can remove all the original .App-logo, .App-header, @keyframes etc.,
+   as they are specific to the default React spinning logo and not relevant
+   to your new layout. */
