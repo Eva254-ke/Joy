@@ -139,6 +139,12 @@
   animation: float 2s ease-in-out infinite;
 }
 
+.scroll-indicator span {
+  font-size: 0.9rem;
+  color: #fff;
+  opacity: 0.7;
+}
+
 .mouse {
   width: 24px;
   height: 36px;
@@ -161,6 +167,30 @@
   animation: scroll 2s ease infinite;
 }
 
+.scroll-indicator .mouse {
+  width: 22px;
+  height: 36px;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  margin: 0 auto;
+  position: relative;
+  top: 6px;
+}
+
+.scroll-indicator .mouse::after {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 8px;
+  background: #fff;
+  border-radius: 2px;
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  transform: translateX(-50%);
+  animation: mouse-scroll 1.2s infinite;
+}
+
 @keyframes scroll {
   0% { top: 6px; opacity: 1; }
   50% { top: 12px; opacity: 0.5; }
@@ -171,6 +201,29 @@
   0% { transform: translate(-50%, 0); }
   50% { transform: translate(-50%, -10px); }
   100% { transform: translate(-50%, 0); }
+}
+
+@keyframes mouse-scroll {
+  0% { opacity: 1; top: 8px; }
+  50% { opacity: 0.5; top: 18px; }
+  100% { opacity: 1; top: 8px; }
+}
+
+/* Animated Words */
+.hero-animated-word {
+  transition: opacity 0.4s;
+  display: inline-block;
+  font-weight: 600;
+  color: #eab308; /* gold/yellow accent, adjust as needed */
+  letter-spacing: 0.5px;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0;
 }
 
 /* Responsive adjustments */
