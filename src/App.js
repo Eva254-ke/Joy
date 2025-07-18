@@ -9,6 +9,7 @@ import BookingForm from "./components/BookingForm";
 import AboutUs from "./pages/About";
 import Gallery from "./pages/Gallery";
 import FloatingWidget from "./components/FloatingWidget.jsx";
+import Booking from "./pages/Booking";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<><Home /><Footer /></>} />
             <Route path="/services" element={<Services />} />
-            <Route path="/bookings" element={<BookingForm />} />
+            <Route path="/bookings" element={<Booking />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/gallery" element={<Gallery />} />
             {/* Add other routes here as you build more pages */}

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Home.css";
-import BookingForm from "../components/BookingForm";
 
 export default function Hero() {
   // Animated words for the hero description
   const words = ["Relaxation", "Confidence", "Luxury", "Comfort", "Beauty"];
   const [currentWordIdx, setCurrentWordIdx] = useState(0);
   const [fade, setFade] = useState(true);
-  const [showBooking, setShowBooking] = useState(false);
 
   useEffect(() => {
     const fadeOutTimeout = setTimeout(() => setFade(false), 2000);
@@ -20,12 +18,6 @@ export default function Hero() {
       clearTimeout(changeWordTimeout);
     };
   }, [currentWordIdx, words.length]);
-
-  const openBooking = (e) => {
-    e.preventDefault();
-    setShowBooking(true);
-  };
-  const closeBooking = () => setShowBooking(false);
 
   return (
     <section className="hero" role="banner" aria-label="Welcome section">
@@ -65,10 +57,9 @@ export default function Hero() {
 
         <div className="hero-buttons">
           <a
-            href="#book"
+            href="/bookings"
             className="hero-btn"
             aria-label="Book an appointment"
-            onClick={openBooking}
           >
             Book Now
             <span className="btn-icon">→</span>
@@ -82,22 +73,6 @@ export default function Hero() {
           </a>
         </div>
       </div>
-
-      {/* Booking Modal */}
-      {showBooking && (
-        <div
-          className="modal-overlay"
-          onClick={closeBooking}
-          role="presentation"
-        >
-          <div
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <BookingForm onClose={closeBooking} />
-          </div>
-        </div>
-      )}
 
       {/* Scroll indicator for better UX */}
       <div className="scroll-indicator" aria-hidden="true">
