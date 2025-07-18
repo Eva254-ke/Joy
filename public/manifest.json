@@ -1,25 +1,20 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "JoyBeauty",
+  "name": "JoyBeauty - An Attractive Spa for Women",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "https://i.ibb.co/ZpTXzQ9r/a-logo-design-featuring-the-text-joybeau-57-TA7xe4-QBOu-Aua9umbh-Eg-Hxp-NVS0t-Qfu-RXZb-XEE-1-Uw.jpg",
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "https://i.ibb.co/ZpTXzQ9r/a-logo-design-featuring-the-text-joybeau-57-TA7xe4-QBOu-Aua9umbh-Eg-Hxp-NVS0t-Qfu-RXZb-XEE-1-Uw.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#ffffff",
   "background_color": "#ffffff"
 }

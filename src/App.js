@@ -8,6 +8,7 @@ import Services from "./pages/Services";
 import BookingForm from "./components/BookingForm";
 import AboutUs from "./pages/About";
 import Gallery from "./pages/Gallery";
+import FloatingWidget from "./components/FloatingWidget.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             {/* Add other routes here as you build more pages */}
           </Routes>
         </main>
+        <FloatingWidget />
       </div>
     </Router>
   );
