@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
-import BookingForm from "./components/BookingForm";
 import AboutUs from "./pages/About";
 import Gallery from "./pages/Gallery";
 import FloatingWidget from "./components/FloatingWidget.jsx";
