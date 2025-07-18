@@ -110,9 +110,11 @@
 }
 
 .contact-link,
-.map-link {
-  color: var(--primary);
-  font-weight: 500;
+.map-link,
+.map-interaction-notice {
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -120,8 +122,10 @@
   transition: color 0.2s;
 }
 .contact-link:hover,
-.map-link:hover {
+.map-link:hover,
+.map-interaction-notice:hover {
   color: var(--secondary);
+  text-decoration: underline;
 }
 .link-arrow {
   display: inline-block;

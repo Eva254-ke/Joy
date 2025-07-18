@@ -63,8 +63,8 @@ export default function ContactSection() {
               </div>
               <div>
                 <h3>Call Us</h3>
-                <a href="tel:+254712345678" className="contact-link">
-                  +254 712 345 678
+                <a href="tel:+254748082746" className="contact-link">
+                  +254 748 082 746
                   <span className="link-arrow">→</span>
                 </a>
               </div>
