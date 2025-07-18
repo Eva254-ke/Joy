@@ -1,3 +1,7 @@
+.floating-widget a {
+    text-decoration: none;
+}
+
 .floating-widget {
     position: fixed;
     bottom: 20px;
@@ -29,4 +33,18 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    .floating-widget {
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .widget-button {
+        width: 80%;
+        max-width: 250px;
+        padding: 8px;
+        font-size: 14px;
+    }
 }
