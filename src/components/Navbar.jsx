@@ -6,6 +6,7 @@ const logoUrl = "https://i.ibb.co/ZpTXzQ9r/a-logo-design-featuring-the-text-joyb
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [logoHover, setLogoHover] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +19,9 @@ function Navbar() {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const handleMouseEnter = () => setLogoHover(true);
+  const handleMouseLeave = () => setLogoHover(false);
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -32,8 +36,15 @@ function Navbar() {
       <div className="navbar-container">
         {/* Left: Logo + App Name */}
         <div className="navbar-left">
-          <a href="/" className="navbar-logo" aria-label="JoyBeauty Home">
-            <img src={logoUrl} alt="JoyBeauty Logo" />
+          <a
+            href="/"
+            className={`navbar-logo ${logoHover ? "logo-hover" : ""}`}
+            aria-label="JoyBeauty Home"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            title="Click here to return home"
+          >
+            <img src={logoUrl} alt="JoyBeauty Logo" className="logo-image" />
           </a>
           <span className="navbar-app-name">JoyBeauty</span>
         </div>

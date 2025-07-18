@@ -70,6 +70,15 @@
   transform: rotate(10deg) scale(1.1);
 }
 
+.navbar-logo {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-logo.logo-hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 .navbar-app-name {
   font-size: 1.5rem;
   font-weight: 700;
@@ -330,4 +339,38 @@
 
 .navbar {
   animation: slideDown 0.5s ease-out forwards;
+}
+
+/* Logo Tooltip Styles */
+.logo {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  animation: bounce 2s infinite;
+}
+
+.logo:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }
