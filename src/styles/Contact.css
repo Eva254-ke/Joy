@@ -228,6 +228,31 @@
 }
 
 @media (max-width: 600px) {
+  .contact-responsive-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+  .contact-info, .map-container {
+    flex: 1 1 50%;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .contact-info {
+    padding: 1rem 0.5rem;
+    min-height: 180px;
+    margin-bottom: 0;
+  }
+  .map-container {
+    min-height: 180px;
+    height: 180px;
+    margin-bottom: 0;
+  }
+  .map-wrapper iframe {
+    min-height: 180px;
+    height: 180px;
+  }
   .contact-container {
     min-height: 400px;
     padding-bottom: 1rem;
