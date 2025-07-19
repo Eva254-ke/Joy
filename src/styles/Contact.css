@@ -214,9 +214,8 @@
     padding-bottom: 1.5rem;
   }
   .contact-responsive-row {
-    flex-direction: column;
+    flex-direction: column !important;
     gap: 1.5rem;
-    min-height: 400px;
   }
   .map-container {
     min-height: 220px;
@@ -234,9 +233,8 @@
     padding-bottom: 1rem;
   }
   .contact-responsive-row {
-    flex-direction: column;
+    flex-direction: column !important;
     gap: 1rem;
-    min-height: 300px;
   }
   .contact-info, .map-container {
     flex: 1 1 100%;
