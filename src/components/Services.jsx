@@ -106,6 +106,12 @@ const HomeServicesPreview = () => {
         <div className="modal-overlay" onClick={closeModal} style={{position:'fixed',top:0,left:0,right:0,bottom:0,background:'rgba(0,0,0,0.25)',zIndex:1000,display:'flex',alignItems:'center',justifyContent:'center'}}>
           <div className="modal-content" style={{background:'#fff',borderRadius:16,maxWidth:400,width:'95%',padding:20,boxShadow:'0 8px 32px rgba(219,39,119,0.09)',position:'relative'}} onClick={e=>e.stopPropagation()}>
             <button style={{position:'absolute',top:10,right:10,background:'none',border:'none',fontSize:22,cursor:'pointer'}} onClick={closeModal} aria-label="Close">×</button>
+            {modalService && (
+              <div style={{marginBottom:16,textAlign:'center'}}>
+                <span style={{fontWeight:700,fontSize:'1.1rem',color:'#DB2777'}}>{modalService.title}</span>
+                <span style={{display:'block',fontSize:'1rem',color:'#374151',marginTop:4}}>KES {modalService.price.toLocaleString()}</span>
+              </div>
+            )}
             <BookingForm preselectedService={modalService} />
           </div>
         </div>
