@@ -2,34 +2,41 @@
 @media (max-width: 700px) {
   .contact-responsive-row {
     flex-direction: row;
-    overflow-x: auto;
-    min-width: 600px;
     width: 100%;
     gap: 1.2rem;
     align-items: stretch;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary) var(--light);
+    overflow-x: auto;
+    min-width: unset;
   }
   .contact-info, .map-container {
-    min-width: 320px;
-    max-width: 90vw;
-    padding: 1.2rem 1rem;
+    min-width: 340px;
+    max-width: 100vw;
+    padding: 1.2rem 0.5rem;
     box-sizing: border-box;
   }
   .contact-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
   .contact-subtitle {
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    font-size: 0.98rem;
+    margin-bottom: 0.7rem;
   }
   .contact-details {
-    gap: 1rem;
+    gap: 0.7rem;
   }
   .contact-item {
     padding: 1rem 0.7rem;
     gap: 0.7rem;
     font-size: 0.98rem;
+    background: var(--primary-light) !important;
+    border: 1px solid #ffb6d5;
+    box-shadow: 0 2px 8px rgba(255, 102, 178, 0.13);
+  }
+  .contact-link,
+  .map-link,
+  .map-interaction-notice {
+    color: var(--primary-dark);
+    text-shadow: none;
   }
   .map-wrapper iframe {
     min-height: 220px;
