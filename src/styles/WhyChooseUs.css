@@ -6,7 +6,7 @@
   --white: #FFFFFF;
   --dark: #3A3A3A;
   --light-gray: #F8F8F8;
-}
+/* removed stray closing brace */
 
 .why-choose-us {
   padding: 5rem 0;
@@ -75,6 +75,23 @@
   gap: 2rem;
 }
 
+@media (max-width: 768px) {
+  .benefits-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 1.2rem;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+  }
+  .benefit-card {
+    min-width: 80vw;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    margin-bottom: 0.5rem;
+  }
+}
+
 .benefit-card {
   background: var(--white);
   border-radius: 1rem;
@@ -83,6 +100,9 @@
   transition: all 0.3s ease;
   text-align: center;
   border: 1px solid rgba(255, 102, 178, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .benefit-card:hover {
@@ -102,6 +122,23 @@
   font-size: 2rem;
   color: white;
   box-shadow: 0 5px 15px rgba(212, 77, 140, 0.3);
+}
+
+.benefit-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.5s, opacity 0.5s;
+}
+@media (max-width: 768px) {
+  .benefit-image {
+    width: 60px;
+    height: 60px;
+  }
+}
 }
 
 .benefit-card h3 {
