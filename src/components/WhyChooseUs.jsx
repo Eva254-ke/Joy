@@ -45,7 +45,7 @@ const benefits = [
 export default function WhyChooseUs() {
   // Mobile carousel state
   const [slide, setSlide] = useState(0);
-  const autoScrollRef = useRef();
+  // const autoScrollRef = useRef(); // Removed unused variable
 
   // Keyboard navigation for accessibility
   const goTo = idx => setSlide(Math.max(0, Math.min(idx, benefits.length - 1)));
@@ -71,7 +71,7 @@ export default function WhyChooseUs() {
   }
 
   // For desktop detection
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  // const isMobile = window.matchMedia('(max-width: 768px)').matches; // Removed unused variable
 
   return (
     <section className={styles.whyChooseUs} aria-labelledby="why-choose-title">
