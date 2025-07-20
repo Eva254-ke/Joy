@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./WhyChooseUs.module.css";
 
-// List of benefits (keep or fetch from API)
+// List of benefits
 const benefits = [
   {
     icon: "👩‍⚕️",
@@ -45,18 +45,17 @@ const benefits = [
 export default function WhyChooseUs() {
   // Mobile carousel state
   const [slide, setSlide] = useState(0);
-  // const autoScrollRef = useRef(); // Removed unused variable
-
-  // Keyboard navigation for accessibility
-  const goTo = idx => setSlide(Math.max(0, Math.min(idx, benefits.length - 1)));
-
-  // Carousel handlers
-  const handlePrev = () => goTo(slide - 1);
-  const handleNext = () => goTo(slide + 1);
-
-  // Touch swipe support
   const touchStartX = useRef(null);
 
+  // Autoplay effect
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSlide(prev => (prev + 1) % benefits.length);
+    }, 4450); // Slides every 4.45s
+    return () => clearInterval(timer);
+  }, []);
+
+  // Swipe for mobile
   function onTouchStart(e) {
     touchStartX.current = e.touches[0].clientX;
   }
@@ -64,14 +63,14 @@ export default function WhyChooseUs() {
     if (touchStartX.current == null) return;
     const dx = e.changedTouches[0].clientX - touchStartX.current;
     if (Math.abs(dx) > 60) {
-      if (dx < 0) handleNext();
-      else handlePrev();
+      if (dx < 0) setSlide((slide + 1) % benefits.length);
+      else setSlide((slide - 1 + benefits.length) % benefits.length);
     }
     touchStartX.current = null;
   }
 
-  // For desktop detection
-  // const isMobile = window.matchMedia('(max-width: 768px)').matches; // Removed unused variable
+  // Go to slide (when clicking dots)
+  const goTo = idx => setSlide(idx);
 
   return (
     <section className={styles.whyChooseUs} aria-labelledby="why-choose-title">
@@ -90,7 +89,7 @@ export default function WhyChooseUs() {
         </motion.div>
 
         {/* Desktop: Grid cards */}
-        <div className={styles.benefitsGrid}>
+        <div className={styles.benefitsGrid} aria-hidden="false">
           {benefits.map((benefit, i) => (
             <motion.div
               key={i}
@@ -104,7 +103,7 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.44, delay: i * 0.07 }}
               viewport={{ once: true }}
             >
-              <span className={styles.iconCircle} aria-hidden>
+              <span className={styles.iconCircleGlass} aria-hidden="true">
                 {benefit.icon}
               </span>
               <div className={styles.cardContent}>
@@ -115,26 +114,26 @@ export default function WhyChooseUs() {
           ))}
         </div>
 
-        {/* Mobile: Swipeable single-card carousel */}
-        <div className={styles.mobileCarousel}>
+        {/* Mobile: Swipeable, auto-moving wide card carousel */}
+        <div className={styles.mobileCarousel} aria-hidden="false">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               className={styles.carouselCard}
               key={slide}
               style={{
                 backgroundImage:
-                  `linear-gradient(rgba(49, 13, 35, 0.40),rgba(49, 13, 35, 0.25)),url(${benefits[slide].image})`,
+                  `linear-gradient(rgba(49,13,35,0.37) 5%,rgba(49,13,35,0.21) 95%),url(${benefits[slide].image})`,
               }}
-              initial={{ x: 48, opacity: 0 }}
+              initial={{ x: 64, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -48, opacity: 0 }}
-              transition={{ type: "tween", duration: 0.42 }}
+              exit={{ x: -64, opacity: 0 }}
+              transition={{ type: "tween", duration: 0.45 }}
               tabIndex={0}
               aria-label={`${benefits[slide].title}: ${benefits[slide].description}`}
               onTouchStart={onTouchStart}
               onTouchEnd={onTouchEnd}
             >
-              <span className={styles.iconCircle} aria-hidden>
+              <span className={styles.iconCircleGlass} aria-hidden="true">
                 {benefits[slide].icon}
               </span>
               <div className={styles.cardContent}>
@@ -143,7 +142,6 @@ export default function WhyChooseUs() {
               </div>
             </motion.div>
           </AnimatePresence>
-          {/* Navigation Dots (mobile only) */}
           <div className={styles.carouselDots}>
             {benefits.map((_, idx) => (
               <button
@@ -151,7 +149,7 @@ export default function WhyChooseUs() {
                 className={`${styles.dot} ${idx === slide ? styles.active : ""}`}
                 style={{ pointerEvents: idx === slide ? "none" : "auto" }}
                 aria-label={`Show benefit ${idx + 1}`}
-                onClick={() => setSlide(idx)}
+                onClick={() => goTo(idx)}
                 tabIndex={0}
               />
             ))}
