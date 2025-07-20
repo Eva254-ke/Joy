@@ -1,3 +1,4 @@
+/* WhyChooseUs.module.css */
 :root {
   --primary-pink: #FF66B2;
   --soft-pink: #FFB6D9;
@@ -102,7 +103,7 @@
   transform: translateY(-3px) scale(1.022);
 }
 
-/* --- Icon circle (Glassmorphism!) --- */
+/* --- Icon circle --- */
 .iconCircleGlass {
   display: flex;
   align-items: center;
@@ -114,15 +115,18 @@
   margin-bottom: 1.2rem;
   z-index: 2;
   color: var(--primary-pink);
-
-  /* Glass effect: frosted, white, subtle border, pink shadow, backdrop-blur */
   background: rgba(255,255,255,0.64);
   backdrop-filter: blur(8px) saturate(180%);
   -webkit-backdrop-filter: blur(8px) saturate(180%);
   border: 1.5px solid rgba(238, 85, 167, 0.15);
   box-shadow: 0 4px 18px 0 rgba(255,102,178,0.15), 0 1.5px 8px 0 rgba(255,255,255,0.18);
   outline: none;
-  transition: box-shadow 0.18s, border 0.18s;
+  transition: all 0.3s ease;
+}
+
+.benefitCard:hover .iconCircleGlass {
+  transform: scale(1.08);
+  box-shadow: 0 6px 22px rgba(255,102,178,0.25);
 }
 
 .cardContent h3 {
@@ -146,14 +150,14 @@
   }
 }
 
-/* Hide carousel on desktop! */
+/* Hide carousel on desktop */
 @media (min-width: 769px) {
   .mobileCarousel {
     display: none;
   }
 }
 
-/* --- MOBILE CAROUSEL --- */
+/* --- MOBILE CAROUSEL IMPROVEMENTS --- */
 .mobileCarousel {
   display: flex;
   flex-direction: column;
@@ -161,19 +165,18 @@
   justify-content: center;
   margin-top: 1.2rem;
   width: 100%;
-  min-height: 370px;
-  padding-left: 0;
-  padding-right: 0;
+  min-height: 420px; /* Increased height */
+  padding: 0;
+}
+
+.carouselWrapper {
+  width: 100%;
+  max-width: 95vw;
+  margin: 0 auto;
 }
 
 .carouselCard {
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: auto;
-  margin-right: auto;
-  left: unset;
-  transform: unset;
-  margin-top: 0.5rem;
+  width: 100%;
   border-radius: var(--card-radius);
   box-shadow: var(--active-shadow);
   background-size: cover;
@@ -182,71 +185,109 @@
   color: #fff;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-height: 340px;
-  padding: 1.2rem 0.5rem 1.1rem;
-  text-align: center;
+  min-height: 400px; /* Increased height */
+  padding: 2.5rem 1.5rem 2rem; /* Better padding */
   position: relative;
-  cursor: grab;
   isolation: isolate;
   outline: none;
   user-select: none;
-  animation: fadeIn .27s;
   box-sizing: border-box;
+  overflow: hidden;
+  justify-content: space-between; /* Better space distribution */
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.cardTopContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.carouselCard h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  line-height: 1.3;
+  text-align: center;
+}
+
+.carouselCard p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  line-height: 1.6;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  margin: 0;
+  text-align: center;
+  padding: 0 1rem;
 }
 
 .carouselDots {
   display: flex;
-  gap: 0.42rem;
-  margin-top: 1.25rem;
+  gap: 0.7rem;
+  margin-top: 1.8rem;
   justify-content: center;
 }
 
 .dot {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.65);
   border: 1.5px solid rgba(238, 85, 167, 0.13);
-  box-shadow: 0 2px 8px 0 rgba(255,102,178,0.13), 0 1.5px 8px 0 rgba(255,255,255,0.18);
-  -webkit-backdrop-filter: blur(6px) saturate(160%);
+  box-shadow: 0 2px 8px 0 rgba(255,102,178,0.13);
   backdrop-filter: blur(6px) saturate(160%);
-  transition: all 0.2s;
-  outline: none;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
+
 .dot.active {
   background: var(--primary-pink);
-  transform: scale(1.18);
-  box-shadow: 0 2px 12px #ffb6d962, 0 1.5px 8px 0 rgba(255,255,255,0.18);
+  transform: scale(1.25);
+  box-shadow: 0 0 12px rgba(255, 182, 217, 0.8);
 }
 
-@media (max-width: 520px) {
-  .carouselCard {
-    min-height: 260px;
-    padding: 1rem 0.1rem 1rem;
-    border-radius: 0.6rem;
-    width: 100vw;
-    max-width: 100vw;
-    margin-left: 0;
-    margin-right: 0;
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .whyChooseUs {
+    padding: 2.5rem 1rem;
   }
-  .iconCircleGlass {
-    width: 44px;
-    height: 44px;
-    font-size: 1.25rem;
-    margin-bottom: 1.1rem;
-  }
+  
   .sectionHeader {
-    margin-bottom: 1.3rem;
+    margin-bottom: 2rem;
+  }
+  
+  .iconCircleGlass {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .carouselCard {
+    min-height: 380px;
+    padding: 2rem 1.2rem 1.8rem;
   }
 }
 
-@media (max-width: 390px) {
-  .carouselCard { min-height: 180px;}
+@media (max-width: 480px) {
+  .carouselCard {
+    min-height: 360px;
+    padding: 1.8rem 1rem 1.6rem;
+  }
+  
+  .carouselCard h3 {
+    font-size: 1.35rem;
+  }
+  
+  .carouselCard p {
+    font-size: 1rem;
+  }
+  
+  .iconCircleGlass {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
 }

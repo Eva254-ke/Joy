@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./WhyChooseUs.module.css";
 
-// List of benefits
 const benefits = [
   {
     icon: "👩‍⚕️",
@@ -43,22 +42,20 @@ const benefits = [
 ];
 
 export default function WhyChooseUs() {
-  // Mobile carousel state
   const [slide, setSlide] = useState(0);
   const touchStartX = useRef(null);
 
-  // Autoplay effect
   useEffect(() => {
     const timer = setInterval(() => {
       setSlide(prev => (prev + 1) % benefits.length);
-    }, 4450); // Slides every 4.45s
+    }, 4450);
     return () => clearInterval(timer);
   }, []);
 
-  // Swipe for mobile
   function onTouchStart(e) {
     touchStartX.current = e.touches[0].clientX;
   }
+  
   function onTouchEnd(e) {
     if (touchStartX.current == null) return;
     const dx = e.changedTouches[0].clientX - touchStartX.current;
@@ -69,7 +66,6 @@ export default function WhyChooseUs() {
     touchStartX.current = null;
   }
 
-  // Go to slide (when clicking dots)
   const goTo = idx => setSlide(idx);
 
   return (
@@ -95,8 +91,7 @@ export default function WhyChooseUs() {
               key={i}
               className={styles.benefitCard}
               style={{
-                backgroundImage:
-                  `linear-gradient(rgba(49, 13, 35, 0.40),rgba(49, 13, 35, 0.25)),url(${benefit.image})`,
+                backgroundImage: `linear-gradient(rgba(49, 13, 35, 0.40), rgba(49, 13, 35, 0.25)), url(${benefit.image})`,
               }}
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -114,16 +109,15 @@ export default function WhyChooseUs() {
           ))}
         </div>
 
-        {/* Mobile: Swipeable, auto-moving wide card carousel */}
+        {/* Mobile: Enhanced Carousel */}
         <div className={styles.mobileCarousel} aria-hidden="false">
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+          <div className={styles.carouselWrapper}>
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 className={styles.carouselCard}
                 key={slide}
                 style={{
-                  backgroundImage:
-                    `linear-gradient(rgba(49,13,35,0.37) 5%,rgba(49,13,35,0.21) 95%),url(${benefits[slide].image})`,
+                  backgroundImage: `linear-gradient(rgba(49,13,35,0.37) 5%, rgba(49,13,35,0.21) 95%), url(${benefits[slide].image})`,
                 }}
                 initial={{ x: 64, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -134,13 +128,13 @@ export default function WhyChooseUs() {
                 onTouchStart={onTouchStart}
                 onTouchEnd={onTouchEnd}
               >
-                <span className={styles.iconCircleGlass} aria-hidden="true">
-                  {benefits[slide].icon}
-                </span>
-                <div className={styles.cardContent}>
+                <div className={styles.cardTopContent}>
+                  <span className={styles.iconCircleGlass} aria-hidden="true">
+                    {benefits[slide].icon}
+                  </span>
                   <h3>{benefits[slide].title}</h3>
-                  <p>{benefits[slide].description}</p>
                 </div>
+                <p>{benefits[slide].description}</p>
               </motion.div>
             </AnimatePresence>
             <div className={styles.carouselDots}>
