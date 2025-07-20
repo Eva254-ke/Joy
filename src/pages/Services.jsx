@@ -37,7 +37,7 @@ const serviceCategories = [
     color: "pink-purple",
     image: "https://hdsalonandacademy.co.uk/wp-content/uploads/2023/07/Full-body-waxing-scaled-e1692185226745.jpg",
     services: [
-      { name: "Full Body Waxing", price: 4000, desc: "Complete waxing for all areas.", image: "https://hdsalonandacademy.co.uk/wp-content/uploads/2023/07/Full-body-waxing-scaled-e1692185226745.jpg" },
+      { name: "Full Body Waxing", price: 15000, desc: "Complete waxing for all areas.", image: "https://hdsalonandacademy.co.uk/wp-content/uploads/2023/07/Full-body-waxing-scaled-e1692185226745.jpg" },
       { name: "Bikini Wax", price: 5000, desc: "Clean and comfortable bikini waxing.", image: "https://blufashionbd.com/wp-content/uploads/2022/09/Face-and-Bikini-Line-Wax-Strips-1.webp" },
       { name: "Brazilian Wax", price: 8500, desc: "Smooth Brazilian waxing.", image: "https://i.pinimg.com/originals/d0/19/b8/d019b8c020ccec881b14fd77bd91b992.jpg" },
       { name: "Armpit Wax", price: 3500, desc: "Gentle waxing for underarms.", image: "https://th.bing.com/th/id/R.2b68f848729b8a8c0295f9a497af8b45?rik=f1g3Jslsw%2bgAxQ&pid=ImgRaw&r=0" },
@@ -52,9 +52,9 @@ const serviceCategories = [
     color: "amber-orange",
     image: "https://c8.alamy.com/comp/2GYFX44/young-african-american-woman-blow-drying-her-hair-on-white-background-2GYFX44.jpg",
     services: [
-      { name: "Haircut & Blow Dry", price: 2500, desc: "Fresh cut and professional blow dry.", image: "https://c8.alamy.com/comp/2GYFX44/young-african-american-woman-blow-drying-her-hair-on-white-background-2GYFX44.jpg" },
+      { name: "Haircut & Blow Dry", price: 3500, desc: "Fresh cut and professional blow dry.", image: "https://c8.alamy.com/comp/2GYFX44/young-african-american-woman-blow-drying-her-hair-on-white-background-2GYFX44.jpg" },
       { name: "Hair Braiding", price: 4000, desc: "Classic and modern braiding styles.", image: "https://tse4.mm.bing.net/th/id/OIP.eytTIyu7K0YyuP8g5Og0PAHaJQ?rs=1&pid=ImgDetMain&o=7&rm=3" },
-      { name: "Deep Conditioning", price: 2500, desc: "Nourishing hair therapy.", image: "https://txturhair.com/cdn/shop/products/pdp-shampoo-11.jpg?v=1674592072" },
+      { name: "Deep Conditioning", price: 3500, desc: "Nourishing hair therapy.", image: "https://txturhair.com/cdn/shop/products/pdp-shampoo-11.jpg?v=1674592072" },
       { name: "Hair Dye", price: 3500, desc: "Vibrant, lasting color.", image: "https://tse1.mm.bing.net/th/id/OIP.IlMdklNzj5cGEv3_lRDomQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" },
     ],
   },
