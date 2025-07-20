@@ -38,9 +38,9 @@ const serviceCategories = [
     image: "https://hdsalonandacademy.co.uk/wp-content/uploads/2023/07/Full-body-waxing-scaled-e1692185226745.jpg",
     services: [
       { name: "Full Body Waxing", price: 4000, desc: "Complete waxing for all areas.", image: "https://hdsalonandacademy.co.uk/wp-content/uploads/2023/07/Full-body-waxing-scaled-e1692185226745.jpg" },
-      { name: "Bikini Line Wax", price: 2500, desc: "Clean and comfortable bikini waxing.", image: "https://blufashionbd.com/wp-content/uploads/2022/09/Face-and-Bikini-Line-Wax-Strips-1.webp" },
-      { name: "Underarm Wax", price: 1200, desc: "Gentle waxing for underarms.", image: "https://i.pinimg.com/originals/d0/19/b8/d019b8c020ccec881b14fd77bd91b992.jpg" },
-      { name: "Eyebrow Shaping", price: 1000, desc: "Perfectly shaped brows.", image: "https://th.bing.com/th/id/R.2b68f848729b8a8c0295f9a497af8b45?rik=f1g3Jslsw%2bgAxQ&pid=ImgRaw&r=0" },
+      { name: "Bikini Wax", price: 5000, desc: "Clean and comfortable bikini waxing.", image: "https://blufashionbd.com/wp-content/uploads/2022/09/Face-and-Bikini-Line-Wax-Strips-1.webp" },
+      { name: "Brazilian Wax", price: 8500, desc: "Smooth Brazilian waxing.", image: "https://i.pinimg.com/originals/d0/19/b8/d019b8c020ccec881b14fd77bd91b992.jpg" },
+      { name: "Armpit Wax", price: 3500, desc: "Gentle waxing for underarms.", image: "https://th.bing.com/th/id/R.2b68f848729b8a8c0295f9a497af8b45?rik=f1g3Jslsw%2bgAxQ&pid=ImgRaw&r=0" },
       { name: "Full Leg Wax", price: 4000, desc: "Smooth, hair-free legs.", image: "https://tse3.mm.bing.net/th/id/OIP.-pryEMxp4MNnqWQdECXrHQHaC5?rs=1&pid=ImgDetMain&o=7&rm=3" },
     ],
   },
@@ -53,9 +53,9 @@ const serviceCategories = [
     image: "https://c8.alamy.com/comp/2GYFX44/young-african-american-woman-blow-drying-her-hair-on-white-background-2GYFX44.jpg",
     services: [
       { name: "Haircut & Blow Dry", price: 2500, desc: "Fresh cut and professional blow dry.", image: "https://c8.alamy.com/comp/2GYFX44/young-african-american-woman-blow-drying-her-hair-on-white-background-2GYFX44.jpg" },
-      { name: "Hair Braiding", price: 2000, desc: "Classic and modern braiding styles.", image: "https://tse4.mm.bing.net/th/id/OIP.eytTIyu7K0YyuP8g5Og0PAHaJQ?rs=1&pid=ImgDetMain&o=7&rm=3" },
+      { name: "Hair Braiding", price: 4000, desc: "Classic and modern braiding styles.", image: "https://tse4.mm.bing.net/th/id/OIP.eytTIyu7K0YyuP8g5Og0PAHaJQ?rs=1&pid=ImgDetMain&o=7&rm=3" },
       { name: "Deep Conditioning", price: 2500, desc: "Nourishing hair therapy.", image: "https://txturhair.com/cdn/shop/products/pdp-shampoo-11.jpg?v=1674592072" },
-      { name: "Hair Coloring", price: 3500, desc: "Vibrant, lasting color.", image: "https://tse1.mm.bing.net/th/id/OIP.IlMdklNzj5cGEv3_lRDomQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" },
+      { name: "Hair Dye", price: 3500, desc: "Vibrant, lasting color.", image: "https://tse1.mm.bing.net/th/id/OIP.IlMdklNzj5cGEv3_lRDomQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" },
     ],
   },
   {
@@ -66,10 +66,10 @@ const serviceCategories = [
     color: "emerald-teal",
     image: "https://th.bing.com/th/id/R.c7cc980b32d0673eeed6855cdc644a4d?rik=yoGJ6jcX0U7MUg&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5601589ae4b0b133a4b3f031%2f5601a2a0e4b0a65d1259b783%2f5a6631a88165f5708589ee8b%2f1593192238201%2fiStockHeaven-on-earth--A-day-at-the-spa.jpg%3fformat%3d1500w&ehk=g2mWkKYaU%2f81SalPeZomXAxwHB5umj3W0N8150vpU5k%3d&risl=&pid=ImgRaw&r=0",
     services: [
-      { name: "Relaxing Massage", price: 3500, desc: "Full body therapeutic massage.", image: "https://th.bing.com/th/id/R.c7cc980b32d0673eeed6855cdc644a4d?rik=yoGJ6jcX0U7MUg&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5601589ae4b0b133a4b3f031%2f5601a2a0e4b0a65d1259b783%2f5a6631a88165f5708589ee8b%2f1593192238201%2fiStockHeaven-on-earth--A-day-at-the-spa.jpg%3fformat%3d1500w&ehk=g2mWkKYaU%2f81SalPeZomXAxwHB5umj3W0N8150vpU5k%3d&risl=&pid=ImgRaw&r=0" },
-      { name: "Deep Tissue Massage", price: 4500, desc: "Intensive muscle relief.", image: "https://sflhealthandwellness.com/wp-content/uploads/2012/12/Deep-Tissue-Massage-Techniques-and-Health-Benefits-1.jpg" },
-      { name: "Classic Facial", price: 2500, desc: "Cleansing and hydrating facial.", image: "https://www.gspa.com.sg/image/cache/catalog/Treatment/Facial_Website%20Image-01-500x500.jpg" },
-      { name: "Facial Scrub", price: 1200, desc: "Gentle exfoliation for glowing skin.", image: "https://m.media-amazon.com/images/I/81hTaWccxZL.jpg" },
+      { name: "Full Body Massage (Swedish)", price: 10000, desc: "Swedish massage, 1hr.", image: "https://th.bing.com/th/id/R.c7cc980b32d0673eeed6855cdc644a4d?rik=yoGJ6jcX0U7MUg&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5601589ae4b0b133a4b3f031%2f5601a2a0e4b0a65d1259b783%2f5a6631a88165f5708589ee8b%2f1593192238201%2fiStockHeaven-on-earth--A-day-at-the-spa.jpg%3fformat%3d1500w&ehk=g2mWkKYaU%2f81SalPeZomXAxwHB5umj3W0N8150vpU5k%3d&risl=&pid=ImgRaw&r=0" },
+      { name: "Deep Tissue Massage", price: 13500, desc: "Intensive muscle relief.", image: "https://sflhealthandwellness.com/wp-content/uploads/2012/12/Deep-Tissue-Massage-Techniques-and-Health-Benefits-1.jpg" },
+      { name: "Aromatherapy Massage", price: 12000, desc: "Relaxing aromatherapy massage.", image: "https://www.gspa.com.sg/image/cache/catalog/Treatment/Facial_Website%20Image-01-500x500.jpg" },
+      // ...existing code...
     ],
   },
   {
@@ -80,7 +80,7 @@ const serviceCategories = [
     color: "blue-indigo",
     image: "https://tse1.mm.bing.net/th/id/OIP.t7aPZC-AEEdt64GVjpRYuwHaHX?rs=1&pid=ImgDetMain&o=7&rm=3",
     services: [
-      { name: "Brow Shaping", price: 1000, desc: "Expert brow sculpting.", image: "https://tse1.mm.bing.net/th/id/OIP.t7aPZC-AEEdt64GVjpRYuwHaHX?rs=1&pid=ImgDetMain&o=7&rm=3" },
+      { name: "Eye Lash", price: 3500, desc: "Beautiful eyelash service.", image: "https://tse1.mm.bing.net/th/id/OIP.t7aPZC-AEEdt64GVjpRYuwHaHX?rs=1&pid=ImgDetMain&o=7&rm=3" },
       { name: "Lash Tinting", price: 1500, desc: "Long-lasting lash color.", image: "https://i.pinimg.com/736x/7c/cb/8e/7ccb8ee6432dba47c6e4237d78b01196.jpg" },
       { name: "Henna Brows", price: 1800, desc: "Natural, fuller-looking brows.", image: "https://tse2.mm.bing.net/th/id/OIP.fdOsaXsD4jwEDqoIwD63gwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" },
     ],
