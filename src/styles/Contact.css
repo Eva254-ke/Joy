@@ -207,26 +207,5 @@
   background: rgba(34, 34, 59, 0.9);
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .contact-info {
-    padding: 1.2rem 0.8rem;
-    gap: 1rem;
-    min-height: 180px;
-  }
-  .contact-details {
-    gap: 1rem;
-  }
-  .contact-item {
-    padding: 1rem 0.6rem;
-    gap: 0.8rem;
-  }
-  .contact-title {
-    font-size: 1.5rem;
-  }
-  .contact-subtitle {
-    font-size: 0.95rem;
-    margin: 0.7rem 0 1.5rem 0;
-  }
-}
+/* Responsive: No layout change for mobile, keep side-by-side */
 
