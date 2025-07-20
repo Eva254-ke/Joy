@@ -11,6 +11,8 @@ import FloatingWidget from "./components/FloatingWidget.jsx";
 import Booking from "./pages/Booking";
 
 function App() {
+  // Get current location to conditionally render FloatingWidget
+  const { pathname } = window.location;
   return (
     <Router>
       <div className="App">
@@ -26,7 +28,7 @@ function App() {
             {/* Add other routes here as you build more pages */}
           </Routes>
         </main>
-        <FloatingWidget />
+        {pathname !== "/bookings" && <FloatingWidget />}
       </div>
     </Router>
   );
