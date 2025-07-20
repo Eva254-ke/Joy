@@ -1,110 +1,113 @@
 import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
-import "../styles/WhyChooseUs.css";
+import { motion, AnimatePresence } from "framer-motion";
+import styles from "./WhyChooseUs.module.css";
 
+// List of benefits (keep or fetch from API)
 const benefits = [
   {
     icon: "👩‍⚕️",
     image: "https://i.ibb.co/xSBLQHMy/african-woman-receiving-spa-facial-treatment-B3-A23-T.jpg",
     title: "Expert Female Specialists",
-    description: "Our all-female team provides personalized care with a gentle touch"
+    description: "Our all-female team provides personalized care with a gentle touch",
   },
   {
     icon: "✨",
     image: "https://i.ibb.co/ccPkYTSD/luxury.jpg",
     title: "Luxury Experience",
-    description: "Indulge in premium treatments with high-end products"
+    description: "Indulge in premium treatments with high-end products",
   },
   {
     icon: "🧼",
     image: "https://i.ibb.co/svNmjGX9/medical.jpg",
     title: "Medical-Grade Hygiene",
-    description: "Sterilized tools and hospital-level cleanliness standards"
+    description: "Sterilized tools and hospital-level cleanliness standards",
   },
   {
     icon: "🌸",
     image: "https://img.freepik.com/free-photo/tender-african-woman-smiling-looking-into-distance-relaxing-spa-salon_176420-12908.jpg?size=626&ext=jpg",
     title: "Women-Only Sanctuary",
-    description: "A private, comfortable space designed just for women"
+    description: "A private, comfortable space designed just for women",
   },
   {
     icon: "💆‍♀️",
     image: "https://i.ibb.co/ccPkYTSD/luxury.jpg",
     title: "Customized Treatments",
-    description: "Personalized solutions for your unique beauty needs"
+    description: "Personalized solutions for your unique beauty needs",
   },
   {
     icon: "💎",
     image: "https://i.ibb.co/fzFQq9Nn/affordable.jpg",
     title: "Affordable Luxury",
-    description: "Premium services at accessible prices"
-  }
+    description: "Premium services at accessible prices",
+  },
 ];
 
 export default function WhyChooseUs() {
-  const scrollContainerRef = useRef(null);
-  const [isAtStart, setIsAtStart] = useState(true);
-  const [isAtEnd, setIsAtEnd] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  // Mobile carousel state
+  const [slide, setSlide] = useState(0);
+  const autoScrollRef = useRef();
 
-  const handleScroll = () => {
-    if (!scrollContainerRef.current) return;
-    
-    const container = scrollContainerRef.current;
-    const scrollLeft = container.scrollLeft;
-    const scrollWidth = container.scrollWidth;
-    const clientWidth = container.clientWidth;
-    
-    setIsAtStart(scrollLeft === 0);
-    setIsAtEnd(scrollLeft >= scrollWidth - clientWidth - 1);
-    
-    // Update active index
-    const newIndex = Math.round(scrollLeft / (clientWidth / 2));
-    setActiveIndex(newIndex);
-  };
+  // Keyboard navigation for accessibility
+  const goTo = idx => setSlide(Math.max(0, Math.min(idx, benefits.length - 1)));
 
-  const scrollTo = (index) => {
-    if (!scrollContainerRef.current) return;
-    
-    const container = scrollContainerRef.current;
-    const cardWidth = container.clientWidth / 2;
-    
-    container.scrollTo({
-      left: index * cardWidth,
-      behavior: 'smooth'
-    });
-  };
+  // Carousel handlers
+  const handlePrev = () => goTo(slide - 1);
+  const handleNext = () => goTo(slide + 1);
+
+  // Touch swipe support
+  const touchStartX = useRef(null);
+
+  function onTouchStart(e) {
+    touchStartX.current = e.touches[0].clientX;
+  }
+  function onTouchEnd(e) {
+    if (touchStartX.current == null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) > 60) {
+      if (dx < 0) handleNext();
+      else handlePrev();
+    }
+    touchStartX.current = null;
+  }
+
+  // For desktop detection
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
   return (
-    <section className="why-choose-us" aria-labelledby="why-choose-title">
-      <div className="container">
-        <motion.div 
-          className="section-header"
-          initial={{ opacity: 0, y: 20 }}
+    <section className={styles.whyChooseUs} aria-labelledby="why-choose-title">
+      <div className={styles.container}>
+        {/* Section Header */}
+        <motion.div
+          className={styles.sectionHeader}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.65 }}
         >
-          <h2 id="why-choose-title">Why Women Choose <span>JoyBeauty</span></h2>
-          <p className="subtitle">Experience the difference of feminine-centric beauty care</p>
+          <h2 id="why-choose-title">
+            Why Women Choose <span className={styles.pink}>JoyBeauty</span>
+          </h2>
+          <p className={styles.subtitle}>Experience the difference of feminine-centric beauty care</p>
         </motion.div>
 
-        {/* Desktop Grid */}
-        <div className="benefits-grid">
-          {benefits.map((benefit, index) => (
+        {/* Desktop: Grid cards */}
+        <div className={styles.benefitsGrid}>
+          {benefits.map((benefit, i) => (
             <motion.div
-              key={index}
-              className="benefit-card"
+              key={i}
+              className={styles.benefitCard}
               style={{
-                backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${benefit.image})`,
+                backgroundImage:
+                  `linear-gradient(rgba(49, 13, 35, 0.40),rgba(49, 13, 35, 0.25)),url(${benefit.image})`,
               }}
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
+              transition={{ duration: 0.44, delay: i * 0.07 }}
               viewport={{ once: true }}
             >
-              <div className="icon-circle" aria-hidden="true">{benefit.icon}</div>
-              <div className="card-content">
+              <span className={styles.iconCircle} aria-hidden>
+                {benefit.icon}
+              </span>
+              <div className={styles.cardContent}>
                 <h3>{benefit.title}</h3>
                 <p>{benefit.description}</p>
               </div>
@@ -112,65 +115,46 @@ export default function WhyChooseUs() {
           ))}
         </div>
 
-        {/* Mobile 2-Card Layout */}
-        <div className="mobile-scroll-container">
-          <div 
-            className="benefits-grid-horizontal"
-            ref={scrollContainerRef}
-            onScroll={handleScroll}
-          >
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={`mobile-${index}`}
-                className="benefit-card-horizontal"
-                style={{
-                  backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${benefit.image})`,
-                }}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileTap={{ scale: 0.98 }}
-                viewport={{ once: true }}
-              >
-                <div className="icon-circle" aria-hidden="true">{benefit.icon}</div>
-                <div className="card-content">
-                  <h3>{benefit.title}</h3>
-                  <p>{benefit.description}</p>
-                </div>
-              </motion.div>
+        {/* Mobile: Swipeable single-card carousel */}
+        <div className={styles.mobileCarousel}>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              className={styles.carouselCard}
+              key={slide}
+              style={{
+                backgroundImage:
+                  `linear-gradient(rgba(49, 13, 35, 0.40),rgba(49, 13, 35, 0.25)),url(${benefits[slide].image})`,
+              }}
+              initial={{ x: 48, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -48, opacity: 0 }}
+              transition={{ type: "tween", duration: 0.42 }}
+              tabIndex={0}
+              aria-label={`${benefits[slide].title}: ${benefits[slide].description}`}
+              onTouchStart={onTouchStart}
+              onTouchEnd={onTouchEnd}
+            >
+              <span className={styles.iconCircle} aria-hidden>
+                {benefits[slide].icon}
+              </span>
+              <div className={styles.cardContent}>
+                <h3>{benefits[slide].title}</h3>
+                <p>{benefits[slide].description}</p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+          {/* Navigation Dots (mobile only) */}
+          <div className={styles.carouselDots}>
+            {benefits.map((_, idx) => (
+              <button
+                key={idx}
+                className={`${styles.dot} ${idx === slide ? styles.active : ""}`}
+                style={{ pointerEvents: idx === slide ? "none" : "auto" }}
+                aria-label={`Show benefit ${idx + 1}`}
+                onClick={() => setSlide(idx)}
+                tabIndex={0}
+              />
             ))}
-          </div>
-          
-          {/* Navigation Controls */}
-          <div className="mobile-navigation">
-            <button 
-              className={`nav-arrow left ${isAtStart ? 'disabled' : ''}`}
-              onClick={() => scrollTo(activeIndex - 1)}
-              disabled={isAtStart}
-              aria-label="Previous cards"
-            >
-              &lt;
-            </button>
-            
-            <div className="scroll-indicators">
-              {[...Array(Math.ceil(benefits.length / 2))].map((_, index) => (
-                <button
-                  key={`indicator-${index}`}
-                  className={`indicator ${index === activeIndex ? 'active' : ''}`}
-                  onClick={() => scrollTo(index)}
-                  aria-label={`Go to page ${index + 1}`}
-                />
-              ))}
-            </div>
-            
-            <button 
-              className={`nav-arrow right ${isAtEnd ? 'disabled' : ''}`}
-              onClick={() => scrollTo(activeIndex + 1)}
-              disabled={isAtEnd}
-              aria-label="Next cards"
-            >
-              &gt;
-            </button>
           </div>
         </div>
       </div>
