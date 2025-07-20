@@ -4,26 +4,17 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./BookingForm.css";
 
 const services = [
-  {
-    id: 1,
-    title: "Full Body Waxing",
-    price: 4000,
-  },
-  {
-    id: 2,
-    title: "Facial Treatments",
-    price: 2500,
-  },
-  {
-    id: 3,
-    title: "Relaxing Massages",
-    price: 3500,
-  },
-  {
-    id: 4,
-    title: "Brow & Lash Services",
-    price: 1500,
-  },
+  { id: 1, title: "Full Body Wax", price: 15000 },
+  { id: 2, title: "Hair Dye", price: 3500 },
+  { id: 3, title: "Bikini Wax", price: 5000 },
+  { id: 4, title: "Brazilian Wax", price: 8500 },
+  { id: 5, title: "Armpit Wax", price: 3500 },
+  { id: 6, title: "Full Body Massage (Swedish) 1hr", price: 10000 },
+  { id: 7, title: "Deep Tissue Massage", price: 13500 },
+  { id: 8, title: "Aromatherapy Massage", price: 12000 },
+  { id: 9, title: "Eye Lash", price: 3500 },
+  { id: 10, title: "Full Leg Wax", price: 4000 },
+  { id: 11, title: "Hair Braiding", price: 4000 },
 ];
 
 const timeSlots = [
