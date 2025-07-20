@@ -93,6 +93,7 @@
 }
 
 .benefit-card {
+  position: relative;
   background: var(--white);
   border-radius: 1rem;
   padding: 2rem;
@@ -103,6 +104,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .benefit-card:hover {
@@ -143,15 +149,17 @@
 
 .benefit-card h3 {
   font-size: 1.3rem;
-  color: var(--dark);
+  color: #fff;
   margin-bottom: 1rem;
   font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 
 .benefit-card p {
-  color: var(--dark);
+  color: #fff;
   line-height: 1.6;
   font-size: 1rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 
 @media (max-width: 768px) {

@@ -55,24 +55,24 @@ export default function WhyChooseUs() {
           <p className="subtitle">Experience the difference of feminine-centric beauty care</p>
         </motion.div>
 
+
+
         <div className="benefits-grid">
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
               className="benefit-card"
+              style={{
+                backgroundImage: `linear-gradient(rgba(40,40,40,0.35), rgba(40,40,40,0.35)), url(${benefit.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+              }}
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
             >
-              <motion.img
-                src={benefit.image}
-                alt={benefit.title}
-                className="benefit-image"
-                initial={{ scale: 0.8, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-              />
               <div className="icon-circle">{benefit.icon}</div>
               <h3>{benefit.title}</h3>
               <p>{benefit.description}</p>
