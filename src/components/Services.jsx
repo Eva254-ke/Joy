@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import BookingForm from './BookingForm';
 import '../services.css'; // External CSS import
 
 const featuredServices = [
@@ -42,6 +43,18 @@ const featuredServices = [
 
 const HomeServicesPreview = () => {
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [modalService, setModalService] = useState(null);
+
+  const handleQuickBook = (service) => {
+    setModalService(service);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setModalService(null);
+  };
 
   return (
     <section className="home-services-section" aria-label="Our Spa Services">
@@ -58,6 +71,7 @@ const HomeServicesPreview = () => {
             <ServiceCard 
               key={service.id}
               service={service}
+              onQuickBook={() => handleQuickBook(service)}
               onClick={() => navigate(`/services/${service.id}`)}
             />
           ))}
@@ -87,12 +101,21 @@ const HomeServicesPreview = () => {
           </motion.button>
         </motion.div>
       </div>
+      {/* Modal for Quick Book */}
+      {showModal && (
+        <div className="modal-overlay" onClick={closeModal} style={{position:'fixed',top:0,left:0,right:0,bottom:0,background:'rgba(0,0,0,0.25)',zIndex:1000,display:'flex',alignItems:'center',justifyContent:'center'}}>
+          <div className="modal-content" style={{background:'#fff',borderRadius:16,maxWidth:400,width:'95%',padding:20,boxShadow:'0 8px 32px rgba(219,39,119,0.09)',position:'relative'}} onClick={e=>e.stopPropagation()}>
+            <button style={{position:'absolute',top:10,right:10,background:'none',border:'none',fontSize:22,cursor:'pointer'}} onClick={closeModal} aria-label="Close">×</button>
+            <BookingForm preselectedService={modalService} />
+          </div>
+        </div>
+      )}
     </section>
   );
 };
 
 // Service Card Component
-const ServiceCard = ({ service, onClick }) => {
+const ServiceCard = ({ service, onClick, onQuickBook }) => {
   return (
     <motion.article
       className="service-card"
@@ -122,7 +145,7 @@ const ServiceCard = ({ service, onClick }) => {
         <p className="description">{service.desc}</p>
         <div className="price-row">
           <span className="price">KES {service.price.toLocaleString()}</span>
-          <button className="quick-book-btn" aria-label={`Quick book ${service.title}`}>
+          <button className="quick-book-btn" aria-label={`Quick book ${service.title}`} onClick={e => {e.stopPropagation(); if (typeof onQuickBook === 'function') onQuickBook();}}>
             Quick Book
           </button>
         </div>

@@ -22,8 +22,8 @@ const timeSlots = [
   "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM",
 ];
 
-export default function BookingForm() {
-  const [selectedService, setSelectedService] = useState("");
+export default function BookingForm({ preselectedService }) {
+  const [selectedService, setSelectedService] = useState(preselectedService ? preselectedService.title : "");
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
   const [name, setName] = useState("");
@@ -61,6 +61,8 @@ export default function BookingForm() {
             value={selectedService}
             onChange={(e) => setSelectedService(e.target.value)}
             required
+            disabled={!!preselectedService}
+            style={preselectedService ? { background: '#f3f4f6', color: '#888' } : {}}
           >
             <option value="">Select a service</option>
             {services.map((s) => (
