@@ -1,3 +1,41 @@
+/* Mobile: Keep side-by-side layout, add horizontal scroll, ensure content is visible */
+@media (max-width: 700px) {
+  .contact-responsive-row {
+    flex-direction: row;
+    overflow-x: auto;
+    min-width: 600px;
+    width: 100%;
+    gap: 1.2rem;
+    align-items: stretch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--light);
+  }
+  .contact-info, .map-container {
+    min-width: 320px;
+    max-width: 90vw;
+    padding: 1.2rem 1rem;
+    box-sizing: border-box;
+  }
+  .contact-title {
+    font-size: 1.5rem;
+  }
+  .contact-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .contact-details {
+    gap: 1rem;
+  }
+  .contact-item {
+    padding: 1rem 0.7rem;
+    gap: 0.7rem;
+    font-size: 0.98rem;
+  }
+  .map-wrapper iframe {
+    min-height: 220px;
+    max-height: 260px;
+  }
+}
 /* ContactSection.css */
 :root {
   --primary: #ff66b2;
