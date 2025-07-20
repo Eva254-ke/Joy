@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import "../styles/WhyChooseUs.css";
 
@@ -45,42 +45,32 @@ export default function WhyChooseUs() {
   const scrollContainerRef = useRef(null);
   const [isAtStart, setIsAtStart] = useState(true);
   const [isAtEnd, setIsAtEnd] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const handleScroll = () => {
-      setIsAtStart(container.scrollLeft === 0);
-      setIsAtEnd(container.scrollLeft >= container.scrollWidth - container.clientWidth - 1);
-    };
-
-    container.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
-
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, [windowWidth]);
-
-  const scrollTo = (direction) => {
+  const handleScroll = () => {
     if (!scrollContainerRef.current) return;
     
     const container = scrollContainerRef.current;
-    const scrollAmount = container.clientWidth * 0.8;
+    const scrollLeft = container.scrollLeft;
+    const scrollWidth = container.scrollWidth;
+    const clientWidth = container.clientWidth;
+    
+    setIsAtStart(scrollLeft === 0);
+    setIsAtEnd(scrollLeft >= scrollWidth - clientWidth - 1);
+    
+    // Update active index
+    const newIndex = Math.round(scrollLeft / (clientWidth / 2));
+    setActiveIndex(newIndex);
+  };
+
+  const scrollTo = (index) => {
+    if (!scrollContainerRef.current) return;
+    
+    const container = scrollContainerRef.current;
+    const cardWidth = container.clientWidth / 2;
     
     container.scrollTo({
-      left: direction === 'right' 
-        ? container.scrollLeft + scrollAmount 
-        : container.scrollLeft - scrollAmount,
+      left: index * cardWidth,
       behavior: 'smooth'
     });
   };
@@ -122,11 +112,12 @@ export default function WhyChooseUs() {
           ))}
         </div>
 
-        {/* Mobile Horizontal Scroll */}
+        {/* Mobile 2-Card Layout */}
         <div className="mobile-scroll-container">
           <div 
             className="benefits-grid-horizontal"
             ref={scrollContainerRef}
+            onScroll={handleScroll}
           >
             {benefits.map((benefit, index) => (
               <motion.div
@@ -150,42 +141,36 @@ export default function WhyChooseUs() {
             ))}
           </div>
           
-          {/* Navigation Arrows */}
-          {!isAtStart && (
+          {/* Navigation Controls */}
+          <div className="mobile-navigation">
             <button 
-              className="scroll-arrow left" 
-              onClick={() => scrollTo('left')}
-              aria-label="Scroll left"
+              className={`nav-arrow left ${isAtStart ? 'disabled' : ''}`}
+              onClick={() => scrollTo(activeIndex - 1)}
+              disabled={isAtStart}
+              aria-label="Previous cards"
             >
               &lt;
             </button>
-          )}
-          {!isAtEnd && (
+            
+            <div className="scroll-indicators">
+              {[...Array(Math.ceil(benefits.length / 2))].map((_, index) => (
+                <button
+                  key={`indicator-${index}`}
+                  className={`indicator ${index === activeIndex ? 'active' : ''}`}
+                  onClick={() => scrollTo(index)}
+                  aria-label={`Go to page ${index + 1}`}
+                />
+              ))}
+            </div>
+            
             <button 
-              className="scroll-arrow right" 
-              onClick={() => scrollTo('right')}
-              aria-label="Scroll right"
+              className={`nav-arrow right ${isAtEnd ? 'disabled' : ''}`}
+              onClick={() => scrollTo(activeIndex + 1)}
+              disabled={isAtEnd}
+              aria-label="Next cards"
             >
               &gt;
             </button>
-          )}
-          
-          {/* Scroll Indicators */}
-          <div className="scroll-indicators">
-            {benefits.map((_, index) => (
-              <div 
-                key={`indicator-${index}`}
-                className={`indicator ${Math.round(scrollContainerRef.current?.scrollLeft / (scrollContainerRef.current?.clientWidth || 1)) === index ? 'active' : ''}`}
-                onClick={() => {
-                  if (scrollContainerRef.current) {
-                    scrollContainerRef.current.scrollTo({
-                      left: index * scrollContainerRef.current.clientWidth,
-                      behavior: 'smooth'
-                    });
-                  }
-                }}
-              />
-            ))}
           </div>
         </div>
       </div>
