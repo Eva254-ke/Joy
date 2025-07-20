@@ -1,3 +1,4 @@
+/* WhyChooseUs.css */
 :root {
   --primary-pink: #FF66B2;
   --soft-pink: #FFB6D9;
@@ -76,7 +77,7 @@
   line-height: 1.6;
 }
 
-/* Benefits Grid */
+/* Desktop Benefits Grid */
 .benefits-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
@@ -90,7 +91,6 @@
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 6px 15px rgba(255, 102, 178, 0.15);
-  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,24 +161,154 @@
   opacity: 0.9;
 }
 
+/* Mobile Horizontal Scroll */
+.mobile-scroll-container {
+  position: relative;
+  width: 100%;
+  margin-top: 2rem;
+  display: none;
+}
+
+.benefits-grid-horizontal {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 1rem;
+  padding: 0.5rem 1rem 2rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  scroll-padding: 0 1rem;
+}
+
+.benefits-grid-horizontal::-webkit-scrollbar {
+  display: none;
+}
+
+.benefit-card-horizontal {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(255, 102, 178, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  background-size: cover;
+  background-position: center;
+  min-width: calc(100% - 2rem);
+  height: 320px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+.benefit-card-horizontal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.benefit-card-horizontal:active {
+  transform: scale(0.98);
+}
+
+/* Navigation Arrows */
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: var(--primary-pink);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  z-index: 10;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.scroll-arrow:hover {
+  background: var(--dark-pink);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.scroll-arrow.left {
+  left: 10px;
+}
+
+.scroll-arrow.right {
+  right: 10px;
+}
+
+/* Scroll Indicators */
+.scroll-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: var(--primary-pink);
+  transform: scale(1.2);
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-  .why-choose-us {
-    padding: 3rem 1rem;
+  .benefits-grid {
+    display: none;
+  }
+  
+  .mobile-scroll-container {
+    display: block;
   }
   
   .section-header {
     margin-bottom: 2rem;
   }
-  
-  .benefits-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+}
+
+@media (min-width: 769px) {
+  .mobile-scroll-container {
+    display: none;
   }
-  
-  .benefit-card {
-    padding: 1rem;
-    aspect-ratio: 1/1.1;
+}
+
+@media (max-width: 480px) {
+  .benefit-card-horizontal {
+    min-width: calc(100% - 1rem);
+    height: 300px;
+    padding: 1.2rem;
   }
   
   .icon-circle {
@@ -187,38 +317,10 @@
     font-size: 1.5rem;
     margin-bottom: 1rem;
   }
-}
-
-@media (max-width: 480px) {
-  .benefits-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
   
-  .benefit-card {
-    aspect-ratio: 1/1;
-    padding: 1.5rem;
-  }
-  
-  .section-header h2 {
-    font-size: 1.6rem;
-  }
-  
-  .subtitle {
-    font-size: 0.95rem;
-  }
-  
-  .icon-circle {
-    width: 50px;
-    height: 50px;
-    font-size: 1.3rem;
-  }
-  
-  .benefit-card h3 {
-    font-size: 1.1rem;
-  }
-  
-  .benefit-card p {
-    font-size: 0.9rem;
+  .scroll-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
   }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "../styles/WhyChooseUs.css";
 
@@ -42,6 +42,49 @@ const benefits = [
 ];
 
 export default function WhyChooseUs() {
+  const scrollContainerRef = useRef(null);
+  const [isAtStart, setIsAtStart] = useState(true);
+  const [isAtEnd, setIsAtEnd] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      setIsAtStart(container.scrollLeft === 0);
+      setIsAtEnd(container.scrollLeft >= container.scrollWidth - container.clientWidth - 1);
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [windowWidth]);
+
+  const scrollTo = (direction) => {
+    if (!scrollContainerRef.current) return;
+    
+    const container = scrollContainerRef.current;
+    const scrollAmount = container.clientWidth * 0.8;
+    
+    container.scrollTo({
+      left: direction === 'right' 
+        ? container.scrollLeft + scrollAmount 
+        : container.scrollLeft - scrollAmount,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <section className="why-choose-us" aria-labelledby="why-choose-title">
       <div className="container">
@@ -55,6 +98,7 @@ export default function WhyChooseUs() {
           <p className="subtitle">Experience the difference of feminine-centric beauty care</p>
         </motion.div>
 
+        {/* Desktop Grid */}
         <div className="benefits-grid">
           {benefits.map((benefit, index) => (
             <motion.div
@@ -67,8 +111,7 @@ export default function WhyChooseUs() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              whileTap={{ scale: 0.98 }}
-              viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+              viewport={{ once: true }}
             >
               <div className="icon-circle" aria-hidden="true">{benefit.icon}</div>
               <div className="card-content">
@@ -77,6 +120,73 @@ export default function WhyChooseUs() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Mobile Horizontal Scroll */}
+        <div className="mobile-scroll-container">
+          <div 
+            className="benefits-grid-horizontal"
+            ref={scrollContainerRef}
+          >
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={`mobile-${index}`}
+                className="benefit-card-horizontal"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${benefit.image})`,
+                }}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileTap={{ scale: 0.98 }}
+                viewport={{ once: true }}
+              >
+                <div className="icon-circle" aria-hidden="true">{benefit.icon}</div>
+                <div className="card-content">
+                  <h3>{benefit.title}</h3>
+                  <p>{benefit.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Navigation Arrows */}
+          {!isAtStart && (
+            <button 
+              className="scroll-arrow left" 
+              onClick={() => scrollTo('left')}
+              aria-label="Scroll left"
+            >
+              &lt;
+            </button>
+          )}
+          {!isAtEnd && (
+            <button 
+              className="scroll-arrow right" 
+              onClick={() => scrollTo('right')}
+              aria-label="Scroll right"
+            >
+              &gt;
+            </button>
+          )}
+          
+          {/* Scroll Indicators */}
+          <div className="scroll-indicators">
+            {benefits.map((_, index) => (
+              <div 
+                key={`indicator-${index}`}
+                className={`indicator ${Math.round(scrollContainerRef.current?.scrollLeft / (scrollContainerRef.current?.clientWidth || 1)) === index ? 'active' : ''}`}
+                onClick={() => {
+                  if (scrollContainerRef.current) {
+                    scrollContainerRef.current.scrollTo({
+                      left: index * scrollContainerRef.current.clientWidth,
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
