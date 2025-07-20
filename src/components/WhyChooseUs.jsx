@@ -116,43 +116,45 @@ export default function WhyChooseUs() {
 
         {/* Mobile: Swipeable, auto-moving wide card carousel */}
         <div className={styles.mobileCarousel} aria-hidden="false">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              className={styles.carouselCard}
-              key={slide}
-              style={{
-                backgroundImage:
-                  `linear-gradient(rgba(49,13,35,0.37) 5%,rgba(49,13,35,0.21) 95%),url(${benefits[slide].image})`,
-              }}
-              initial={{ x: 64, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -64, opacity: 0 }}
-              transition={{ type: "tween", duration: 0.45 }}
-              tabIndex={0}
-              aria-label={`${benefits[slide].title}: ${benefits[slide].description}`}
-              onTouchStart={onTouchStart}
-              onTouchEnd={onTouchEnd}
-            >
-              <span className={styles.iconCircleGlass} aria-hidden="true">
-                {benefits[slide].icon}
-              </span>
-              <div className={styles.cardContent}>
-                <h3>{benefits[slide].title}</h3>
-                <p>{benefits[slide].description}</p>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-          <div className={styles.carouselDots}>
-            {benefits.map((_, idx) => (
-              <button
-                key={idx}
-                className={`${styles.dot} ${idx === slide ? styles.active : ""}`}
-                style={{ pointerEvents: idx === slide ? "none" : "auto" }}
-                aria-label={`Show benefit ${idx + 1}`}
-                onClick={() => goTo(idx)}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                className={styles.carouselCard}
+                key={slide}
+                style={{
+                  backgroundImage:
+                    `linear-gradient(rgba(49,13,35,0.37) 5%,rgba(49,13,35,0.21) 95%),url(${benefits[slide].image})`,
+                }}
+                initial={{ x: 64, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -64, opacity: 0 }}
+                transition={{ type: "tween", duration: 0.45 }}
                 tabIndex={0}
-              />
-            ))}
+                aria-label={`${benefits[slide].title}: ${benefits[slide].description}`}
+                onTouchStart={onTouchStart}
+                onTouchEnd={onTouchEnd}
+              >
+                <span className={styles.iconCircleGlass} aria-hidden="true">
+                  {benefits[slide].icon}
+                </span>
+                <div className={styles.cardContent}>
+                  <h3>{benefits[slide].title}</h3>
+                  <p>{benefits[slide].description}</p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+            <div className={styles.carouselDots}>
+              {benefits.map((_, idx) => (
+                <button
+                  key={idx}
+                  className={`${styles.dot} ${idx === slide ? styles.active : ""}`}
+                  style={{ pointerEvents: idx === slide ? "none" : "auto" }}
+                  aria-label={`Show benefit ${idx + 1}`}
+                  onClick={() => goTo(idx)}
+                  tabIndex={0}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
