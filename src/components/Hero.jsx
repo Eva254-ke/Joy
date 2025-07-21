@@ -6,6 +6,18 @@ export default function Hero() {
   const words = ["Relaxation", "Confidence", "Luxury", "Comfort", "Beauty"];
   const [currentWordIdx, setCurrentWordIdx] = useState(0);
   const [fade, setFade] = useState(true);
+  
+  // Background slideshow state with real spa images
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  
+  // Beautiful spa images for background slideshow
+  const backgroundImages = [
+    "https://i.ibb.co/3mXySVhf/IMG-20250311-WA0019.jpg",
+    "https://i.ibb.co/xSBLQHMy/african-woman-receiving-spa-facial-treatment-B3-A23-T.jpg",
+    "https://i.ibb.co/svNmjGX9/medical.jpg",
+    "https://i.ibb.co/p6hny82W/IMG-20250311-WA0011.jpg",
+    "https://i.ibb.co/fzFQq9Nn/affordable.jpg"
+  ];
 
   useEffect(() => {
     const fadeOutTimeout = setTimeout(() => setFade(false), 2000);
@@ -19,26 +31,25 @@ export default function Hero() {
     };
   }, [currentWordIdx, words.length]);
 
+  // Background slideshow effect
+  useEffect(() => {
+    const bgInterval = setInterval(() => {
+      setCurrentBgIndex((idx) => (idx + 1) % backgroundImages.length);
+    }, 5000); // Change every 5 seconds
+    
+    return () => clearInterval(bgInterval);
+  }, [backgroundImages.length]);
+
   return (
     <section className="hero" role="banner" aria-label="Welcome section">
-      {/* Background video with poster for better loading */}
-      {/*
-        For best performance, ensure /public/videos/video.mp4 is optimized (short, compressed, web-optimized),
-        and /public/images/hero-poster.jpg is a lightweight image matching the first frame of the video.
-      */}
-      <video
-        className="hero-video"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-hidden="true"
-        poster="/images/hero-poster.jpg"
-      >
-        <source src="/videos/video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      {/* Dynamic image background slideshow */}
+      <div 
+        className="hero-background-image"
+        style={{
+          backgroundImage: `url(${backgroundImages[currentBgIndex]})`,
+        }}
+      ></div>
+      <div className="hero-background-overlay"></div>
 
       {/* Overlay content with improved hierarchy */}
       <div className="hero-content">
