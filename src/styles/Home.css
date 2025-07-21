@@ -1,9 +1,7 @@
 /* ---------------- Hero Section ---------------- */
 .hero {
   position: relative;
-  height: 90vh;
-  min-height: 500px;
-  max-height: 1000px;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

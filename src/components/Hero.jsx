@@ -22,12 +22,17 @@ export default function Hero() {
   return (
     <section className="hero" role="banner" aria-label="Welcome section">
       {/* Background video with poster for better loading */}
+      {/*
+        For best performance, ensure /public/videos/video.mp4 is optimized (short, compressed, web-optimized),
+        and /public/images/hero-poster.jpg is a lightweight image matching the first frame of the video.
+      */}
       <video
         className="hero-video"
         autoPlay
         muted
         loop
         playsInline
+        preload="auto"
         aria-hidden="true"
         poster="/images/hero-poster.jpg"
       >
