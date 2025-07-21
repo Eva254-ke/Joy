@@ -470,19 +470,21 @@
   }
   
   .hero-buttons {
-    flex-direction: column;
+    flex-direction: row; /* Keep horizontal layout on mobile */
     gap: 12px;
     width: 100%;
     max-width: 300px;
+    justify-content: center;
   }
   
   .hero-btn,
   .hero-secondary-btn {
-    width: 100%;
+    flex: 1; /* Equal width for both buttons */
     text-align: center;
     justify-content: center;
-    padding: 14px 24px;
-    font-size: 1rem;
+    padding: 14px 16px; /* Reduced padding to fit better */
+    font-size: 0.9rem; /* Slightly smaller text */
+    min-width: 120px;
   }
   
   .scroll-indicator {
