@@ -24,24 +24,39 @@ export default function Footer() {
             in a private, luxurious environment.
           </p>
           
-          <div className="social-links">
-            <button type="button" aria-label="Instagram" className="social-btn">
+          <div className="social-links" aria-label="Social Media">
+            <a
+              href="https://instagram.com"
+              aria-label="Instagram"
+              className="social-btn"
+              target="_blank" rel="noopener noreferrer"
+            >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M12 16a4 4 0 100-8 4 4 0 000 8z" stroke="currentColor" strokeWidth="2"/>
                 <rect x="3" y="3" width="18" height="18" rx="6" stroke="currentColor" strokeWidth="2"/>
                 <circle cx="18" cy="6" r="1" fill="currentColor"/>
               </svg>
-            </button>
-            <button type="button" aria-label="Facebook" className="social-btn">
+            </a>
+            <a
+              href="https://facebook.com"
+              aria-label="Facebook"
+              className="social-btn"
+              target="_blank" rel="noopener noreferrer"
+            >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" strokeWidth="2"/>
               </svg>
-            </button>
-            <button type="button" aria-label="Twitter" className="social-btn">
+            </a>
+            <a
+              href="https://twitter.com"
+              aria-label="Twitter"
+              className="social-btn"
+              target="_blank" rel="noopener noreferrer"
+            >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M23 3a10 10 0 01-2.89.8 5 5 0 002.16-2.77c-.95.58-2 .9-3.13 1.1A4.92 4.92 0 0016.5 1a5 5 0 00-5 5 5 5 0 00.16 1.13 14 14 0 01-10-5.16A5 5 0 003 6.25a5 5 0 002.22 4.13 5 5 0 01-2.28-.63v.06a5 5 0 004 4.9 5 5 0 01-2.26.08 5 5 0 004.7 3.47 10 10 0 01-6.13 2.1" stroke="currentColor" strokeWidth="2"/>
               </svg>
-            </button>
+            </a>
           </div>
         </motion.div>
 
@@ -83,7 +98,7 @@ export default function Footer() {
             </li>
             <li>
               <motion.a 
-                href="/gallery" 
+                href="/gallery"
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
@@ -92,7 +107,7 @@ export default function Footer() {
             </li>
             <li>
               <motion.a 
-                href="/contact" 
+                href="/contact"
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
@@ -152,7 +167,7 @@ export default function Footer() {
           <p>&copy; {currentYear} JoyBeauty. All rights reserved.</p>
           <div className="legal-links">
             <a href="/privacy">Privacy Policy</a>
-            <span>•</span>
+            <span aria-hidden="true">•</span>
             <a href="/terms">Terms of Service</a>
           </div>
         </div>
